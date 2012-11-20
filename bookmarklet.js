@@ -6,7 +6,7 @@
         script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/' + v +
             '/jquery.min.js';
         script.onload = script.onreadystatechange = function(){
-            if(!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')){
+            if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
                 done = true;
                 initMyBookmarklet();
             }
