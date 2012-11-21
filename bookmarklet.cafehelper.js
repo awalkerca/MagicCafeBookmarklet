@@ -138,7 +138,8 @@
 
     var addStyles = function addStyles(){
         var link = $('<link />');
-        var path = $("#magicCafeBookmarkletScript").data('path') || '';
+
+        var path = $("#magicCafeBookmarkletScript").attr('data-path') || '';
         link.attr('href', path + 'bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
         $('head').append(link);
     };
