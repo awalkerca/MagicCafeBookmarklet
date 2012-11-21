@@ -69,10 +69,10 @@
         sectionsContainer.find('tr').addClass('cafeHelperHidden');
         $.each(sectionTitlesToDisplay, function(i,section){
             $('a[href^="' + sectionLink + '"]:contains(' + section + ')').parents('tr').removeClass('cafeHelperHidden').addClass('cafeHelperVisible');
-
         });
         footer.find('tr').addClass('cafeHelperVisible');
         storage.save(sectionTitlesToDisplay.join("|^|"));
+        closePanel();
         evt.preventDefault();
         evt.stopPropagation();
     };
@@ -91,7 +91,14 @@
         addStyles();
         resetButton.click(resetSettings);
         runButton.click(updateView);
-        header.click(function(){$('#cafeBookmarkletHelper .helperBody').slideToggle('fast');});
+        header.click(function(){
+            var helper = $("#cafeBookmarkletHelper");
+            if(helper.hasClass('helperExpanded')){
+                closePanel();
+            }else{
+                showPanel();
+            }
+        });
         $.each(allSections,function(i,section){
             var line = $('<li><input type=checkbox value="' +
                 section +
@@ -111,6 +118,7 @@
         body.append(sectionList);
         panel.append(body);
         $('body').append(panel);
+        $("#cafeBookmarkletHelper").addClass("helperExpanded");
         if(storage.hasStoredValues()){
             hidePanel();
             processSavedValues();
@@ -128,12 +136,20 @@
 
     };
 
+    var closePanel = function closePanel(){
+        $('#cafeBookmarkletHelper .helperBody').slideUp('fast', function(){
+            $("#cafeBookmarkletHelper").toggleClass('helperExpanded');
+        });
+    };
+
     var hidePanel = function hidePanel(){
         $('#cafeBookmarkletHelper .helperBody').hide();
     };
 
     var showPanel = function showPanel(){
-        $('#cafeBookmarkletHelper .helperBody').slideDown();
+        $('#cafeBookmarkletHelper .helperBody').slideDown('fast', function(){
+            $("#cafeBookmarkletHelper").toggleClass('helperExpanded');
+        });
     };
 
     var addStyles = function addStyles(){
