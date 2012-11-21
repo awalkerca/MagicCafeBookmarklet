@@ -4,13 +4,24 @@
     <title></title>
 </head>
 <body>
-    <a href="javascript:(function(){
-    document.body.appendChild(document.createElement('script')).src = 'https://bitbucket.org/awalkerca/magiccafebookmarklet/raw/b6d052ebfdf56e8f0037dfd6a78b6abd658bb941/bookmarklet.cafehelper.js';
-    }())">Remote Test Me</a>
 
     <a href="javascript:(function(){
-    document.body.appendChild(document.createElement('script')).src = 'bookmarklet.cafehelper.js';
-    }())">Local Test Me</a>
+            var path = 'https://raw.github.com/awalkerca/MagicCafeBookmarklet/master/';
+            var el = document.createElement('script');
+            el.id = 'magicCafeBookmarkletScript';
+            el.dataset.path = path;
+            document.body.appendChild(el).src = path + 'bookmarklet.cafehelper.js';
+            }())">Remote Test Me
+    </a>
+
+    <a href="javascript:(function(){
+        var path = '';
+        var el = document.createElement('script');
+        el.id = 'magicCafeBookmarkletScript';
+        el.dataset.path = path;
+        document.body.appendChild(el).src = path + 'bookmarklet.cafehelper.js';
+        }())">Local Test Me
+    </a>
 
 
 
