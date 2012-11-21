@@ -1,0 +1,55 @@
+#cafeBookmarkletHelper, #cafeBookmarkletHelper *{
+    padding: 0;
+    margin: 0;
+}
+#cafeBookmarkletHelper{
+    width: 300px;
+    background: #727272;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+    overflow: auto;
+}
+
+#cafeBookmarkletHelper h2{
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 5px;
+    text-align: right;
+}
+
+#cafeBookmarkletHelper .allSections{
+    height: 300px;
+    overflow: auto;
+}
+
+.cafeHelperHidden{
+    display: none;
+}
+.cafeHelperVisible td{
+    background-color: black;
+}
+
+.cafeHelperVisible:nth-child(even) td{
+    background-color: #222222;
+}
+
+#cafeBookmarkletHelper .allSections li{
+    padding: 2px 5px;
+}
+
+#cafeBookmarkletHelper .allSections li input{
+    margin: 0 5px;
+}
+
+#cafeBookmarkletHelper .allSections li label{
+    font-size: 14px;
+}
+
+#cafeBookmarkletHelper .buttonBar{
+}
+
+#cafeBookmarkletHelper .helperBody input[type=button]{
+    margin: 0 5px;
+}
