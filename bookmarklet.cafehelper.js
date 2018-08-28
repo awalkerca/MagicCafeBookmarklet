@@ -62,17 +62,17 @@
         window.location.reload();
     };
     var updateView = function updateView(evt){
-        var header = $('body > table'),
-            footer = $('body > table:last'),
-            sectionsContainer = $('table + table table tbody'),
+        var header = $('#container > table:first'),
+            footer = $('#container > table:last'),
+            sectionsContainer = $('#container'),
             sectionTitlesToDisplay = getSectionsToDisplay();
         sectionsContainer.find('tr').addClass('cafeHelperHidden');
         $.each(sectionTitlesToDisplay, function(i,section){
             $('a[href^="' + sectionLink + '"]:contains(' + section + ')').parents('tr').removeClass('cafeHelperHidden').addClass('cafeHelperVisible');
+
         });
         footer.find('tr').addClass('cafeHelperVisible');
         storage.save(sectionTitlesToDisplay.join("|^|"));
-        closePanel();
         evt.preventDefault();
         evt.stopPropagation();
     };
@@ -91,14 +91,7 @@
         addStyles();
         resetButton.click(resetSettings);
         runButton.click(updateView);
-        header.click(function(){
-            var helper = $("#cafeBookmarkletHelper");
-            if(helper.hasClass('helperExpanded')){
-                closePanel();
-            }else{
-                showPanel();
-            }
-        });
+        header.click(function(){$('#cafeBookmarkletHelper .helperBody').slideToggle('fast');});
         $.each(allSections,function(i,section){
             var line = $('<li><input type=checkbox value="' +
                 section +
@@ -118,7 +111,6 @@
         body.append(sectionList);
         panel.append(body);
         $('body').append(panel);
-        $("#cafeBookmarkletHelper").addClass("helperExpanded");
         if(storage.hasStoredValues()){
             hidePanel();
             processSavedValues();
@@ -136,32 +128,22 @@
 
     };
 
-    var closePanel = function closePanel(){
-        $('#cafeBookmarkletHelper .helperBody').slideUp('fast', function(){
-            $("#cafeBookmarkletHelper").toggleClass('helperExpanded');
-        });
-    };
-
     var hidePanel = function hidePanel(){
         $('#cafeBookmarkletHelper .helperBody').hide();
     };
 
     var showPanel = function showPanel(){
-        $('#cafeBookmarkletHelper .helperBody').slideDown('fast', function(){
-            $("#cafeBookmarkletHelper").toggleClass('helperExpanded');
-        });
+        $('#cafeBookmarkletHelper .helperBody').slideDown();
     };
 
     var addStyles = function addStyles(){
         var link = $('<link />');
-
-        var path = $("#magicCafeBookmarkletScript").attr('data-path') || '';
-        link.attr('href', path + 'bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
+        link.attr('href','bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
         $('head').append(link);
     };
+
     var initMyBookmarklet = function initMyBookmarklet(){
         (window.myBookmarklet = function(){
-
             renderPanel();
         }());
     }
