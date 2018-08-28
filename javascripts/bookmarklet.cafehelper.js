@@ -138,7 +138,7 @@
 
     var addStyles = function addStyles(){
         var link = $('<link />');
-        link.attr('href','bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
+        link.attr('href','http://awalkerca.github.io/MagicCafeBookmarklet/javascripts/bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
         $('head').append(link);
     };
 
