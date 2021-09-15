@@ -4,7 +4,7 @@
     if (window.jQuery === undefined || window.jQuery.fn.jquery < v){
         var done = false;
         var script = document.createElement('script');
-        script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/' + v +
+        script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/' + v +
             '/jquery.min.js';
         script.onload = script.onreadystatechange = function(){
             if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
@@ -138,7 +138,7 @@
 
     var addStyles = function addStyles(){
         var link = $('<link />');
-        link.attr('href','http://awalkerca.github.io/MagicCafeBookmarklet/javascripts/bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
+        link.attr('href','https://awalkerca.github.io/MagicCafeBookmarklet/javascripts/bookmarklet.cafehelper.css').attr('media','screen').attr('rel','stylesheet').attr('type','text/css');
         $('head').append(link);
     };
 
